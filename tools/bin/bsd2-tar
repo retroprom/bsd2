@@ -1,0 +1,2 @@
+#!/bin/bash
+exec tar --exclude-vcs --exclude-vcs-ignores -H ustar "$@"
