@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+
+if [ -z "${TAR}" ]; then
+	TAR=`which gtar`
+fi
+if [ -z "${TAR}" ]; then
+	TAR=`which tar`
+fi
+
+if ! "${TAR}" --version | grep -sq '(GNU tar)'; then
+	echo "$0: This program requires GNU tar"
+	exit 1
+fi
+
+exec "${TAR}" -H ustar "$@"

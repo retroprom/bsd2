@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+
+# Fix terminal type
+case $TERM in
+xterm*)
+	export TERM=xterm
+	;;
+vt1??|vt2??|vt3??)
+	;;
+*)
+	echo "warning: unknown terminal type $TERM" >2
+esac
+
+if [ -z "$*" ]; then
+	exec rlogin
+else
+	exec rsh "$@"
+fi

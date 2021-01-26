@@ -1,0 +1,18 @@
+#!/bin/sh
+
+root="`dirname $0`/.."
+src="${root}/src"
+
+title=$1
+section=$2
+if [ -z "${title}" ]; then
+	echo "Usage: $0 title [section]"
+	exit 1
+fi
+if [ -z "${section}" ]; then
+	section="[0-9]"
+fi
+
+for file in `find "${src}" -type f -name "${title}.${section}" -print`; do
+	groff -Tascii -man $file | less
+done
